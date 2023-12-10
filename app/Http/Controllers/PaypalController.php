@@ -22,7 +22,7 @@ class PaypalController extends Controller
         
         $transferAmount = $request->order[0]['transfer_amount'];
         $receiverPhoneNumber = $request->order[0]['receiver_phone_number'];
-        $transferFee = ceil($transferAmount * 0.1);
+        $transferFee = round($transferAmount * 0.1, 2);
         $exchangeRate = 101.00;
         
         $provider->getAccessToken();
