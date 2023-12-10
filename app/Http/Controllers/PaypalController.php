@@ -38,28 +38,7 @@ class PaypalController extends Controller
                           'value' => $transferAmount
                         ]
                     ]
-                ],
-                'payer' => [
-                  "birth_date" => "2001-01-01",
-                  "email_address" => "vinkib@gmail.com",
-                  "phone" => [
-                    "phone_number" => [
-                        "national_number" => "4543433243",
-                    ]
-                  ],
-                  "name" => [
-                    "given_name" => "Vincent",
-                    "surname" => "Kibiwot",
-                  ],
-                  "address" => [
-                    "address_line_1" => "123 ABC Street",
-                    "address_line_2" => "Apt 2",
-                    "admin_area_2" => "San Jose",
-                    "admin_area_1" => "CA",
-                    "postal_code" => "95121",
-                    "country_code" => "US",
-                  ],
-                 ],
+                ]
         ];
         
         $provider->getAccessToken();
