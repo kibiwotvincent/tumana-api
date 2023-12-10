@@ -10,6 +10,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\EquityTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,5 +55,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 //paypal routes
-//Route::post('/paypal/order/create', [PaypalController::class, 'createOrder']);
 Route::post('/paypal/order/{id}/capture', [PaypalController::class, 'captureOrder']);
+
+//equity routes
+Route::post('/equity/callback', [EquityTransactionController::class, 'handleCallback']);
+Route::get('/equity/test', [EquityTransactionController::class, 'test']);

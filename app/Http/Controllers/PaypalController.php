@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Log;
 use App\Models\Transaction;
+use App\Events\PaypalTransactionCompleted;
 
 class PaypalController extends Controller
 {
@@ -99,6 +100,9 @@ class PaypalController extends Controller
         }
         $transaction->save();
         
+        if($paypalTransaction['status'] == "COMPLETED") {
+            event(new PaypalTransactionCompleted($transaction));
+        }
         
         return $order;
     }
