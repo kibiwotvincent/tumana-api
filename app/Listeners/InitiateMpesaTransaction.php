@@ -52,6 +52,7 @@ class InitiateMpesaTransaction
         //initiate send money request
 		$mpesaDeposit = new MpesaDeposit();
 		$response = $mpesaDeposit->sendMoney($receiver, $amount, $reference);
+        Log::info($response);
 		if(isset($response['errorCode'])) {
             //log error
 		    Log::info("Failed to send money to ".$receiver.". Try again later.");
