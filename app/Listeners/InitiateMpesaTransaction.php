@@ -54,16 +54,16 @@ class InitiateMpesaTransaction
 		$response = $mpesaDeposit->sendMoney($receiver, $amount, $reference);
 		if(isset($response['errorCode'])) {
             //log error
-		    Log::info("Failed to send money to ".$phoneNumber.". Try again later.");
+		    Log::info("Failed to send money to ".$receiver.". Try again later.");
 		}
 		else {
             $deposit['TransactionAmount'] = $amount;
-            $deposit['ReceiverPhoneNumber'] = $phoneNumber;
+            $deposit['ReceiverPhoneNumber'] = $receiver;
             $deposit['OriginatorConversationID'] = $response['OriginatorConversationID'];
             $deposit['ConversationID'] = $response['ConversationID'];
             
             $mpesaDeposit->acknowledgeDeposit($deposit);
-			Log::info("Payment has been send to ".$phoneNumber.".");
+			Log::info("Payment has been send to ".$receiver.".");
 		}
     }
 }
