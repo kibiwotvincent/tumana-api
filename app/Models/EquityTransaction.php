@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Classes\JengaAPI;
 use App\Events\EquityTransactionCompleted;
 use Illuminate\Support\Facades\Http;
+use Log;
 
 class EquityTransaction extends Model
 {
@@ -83,6 +84,8 @@ class EquityTransaction extends Model
                             "callbackUrl" => config('app.url')."/api/equity/callback"
                         ]
                     ]);
+        
+        Log::debug($response);
         
         return $response->json();
     }

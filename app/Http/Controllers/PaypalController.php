@@ -7,6 +7,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Log;
 use App\Models\Transaction;
 use App\Events\PaypalTransactionCompleted;
+use Carbon\Carbon;
 
 class PaypalController extends Controller
 {
@@ -43,12 +44,13 @@ class PaypalController extends Controller
         
         $provider->getAccessToken();
         $order = $provider->createOrder($data);
+        $reference = Carbon::now()->format('YmdHis');
         
         if(isset($order['id'])) {
            //save transaction to database
             $transaction = new Transaction;
             $transaction->user_id = $request->user()->id;
-            $transaction->reference_id = time();
+            $transaction->reference_id = $reference;
             $transaction->paypal_order_id = $order['id'];
             $transaction->transfer_amount = $transferAmount;
             $transaction->exchange_rate = $exchangeRate;

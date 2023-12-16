@@ -20,7 +20,7 @@ class EquityTransactionController extends Controller
     }
     
     public function test() {
-        $transaction = Transaction::first();
+        $transaction = Transaction::find(10);
         event(new PaypalTransactionCompleted($transaction));
     }
 }

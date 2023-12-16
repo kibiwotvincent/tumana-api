@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\EquityTransactionController;
+use App\Http\Controllers\MpesaDepositController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,8 @@ Route::post('/paypal/order/{id}/capture', [PaypalController::class, 'captureOrde
 //equity routes
 Route::post('/equity/callback', [EquityTransactionController::class, 'handleCallback']);
 Route::get('/equity/test', [EquityTransactionController::class, 'test']);
+
+//mpesa routes
+Route::post('/mpesa/timed_out', [MpesaDepositController::class, 'timeoutCallback']);
+Route::post('/mpesa/process_callback', [MpesaDepositController::class, 'processCallback']);
+Route::get('/mpesa/send', [MpesaDepositController::class, 'send']);

@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('reference_id')->unique();
+            $table->bigInteger('reference_id')->unique();
             $table->string('paypal_order_id')->unique();
             $table->string('paypal_transaction_id')->unique()->nullable();
             $table->double('transfer_amount');
