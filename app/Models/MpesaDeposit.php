@@ -36,8 +36,8 @@ class MpesaDeposit extends Model
     
 	public function __construct() {
 		$this->accessTokenUrl = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
-		$this->callBackUrl = "https://tumana.ifam.co.ke/api/mpesa/process_callback";
-        $this->timeoutUrl = "https://tumana.ifam.co.ke/api/mpesa/timed_out";
+		$this->callBackUrl = "https://tumana-api.ifam.co.ke/api/mpesa/process_callback";
+        $this->timeoutUrl = "https://tumana-api.ifam.co.ke/api/mpesa/timed_out";
 		$this->consumerKey = "RTTIOQAWLs2j4L3ZN3GVvfe7cH1cnTAc";
 		$this->consumerSecret = "bJ63zwzXEFog1sZx";
 		$this->shortCode = "600996";
