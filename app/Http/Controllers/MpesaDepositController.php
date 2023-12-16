@@ -79,7 +79,7 @@ class MpesaDepositController extends Controller
      * @return Str
      *
      */
-    public function processCallback(Request $request)
+    public function timeoutCallback(Request $request)
     {
         $data = $request->all();
         Log::info("timeout");
