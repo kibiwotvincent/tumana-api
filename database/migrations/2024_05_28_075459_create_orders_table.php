@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('exchange_rate');
             $table->decimal('transfer_fee');
             $table->decimal('total_amount');
+            $table->decimal('amount_paid')->default(0.00);
             $table->decimal('receiver_amount');
             $table->string('receiver_phone_number');
             $table->string('receiver_name')->nullable();

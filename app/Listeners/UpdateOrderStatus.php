@@ -4,12 +4,10 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Models\EquityTransaction;
-use App\Models\MpesaDeposit;
+use App\Events\StripePaymentReceived;
 use App\Events\StripePaymentCompleted;
-use Log;
 
-class InitiateMpesaTransaction
+class UpdateOrderStatus
 {
     /**
      * Create the event listener.
@@ -27,10 +25,15 @@ class InitiateMpesaTransaction
      * @param  object  $event
      * @return void
      */
-    public function handle(StripePaymentCompleted $event)
+    public function handle(StripePaymentReceived $event)
     {
         $order = $event->order;
-        $amount = $order->receiver_amount;
-        Log::info('Initiating mpesa transfer...');
+        if($order->amount_paid >= $order->total_amount) {
+            $order->status = 'completed';
+            $order->save();
+
+            //fire stripe payment completed event so as to initiate transfer to mpesa
+            event(new StripePaymentCompleted($order));
+        }
     }
 }

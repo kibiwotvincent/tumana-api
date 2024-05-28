@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StripePaymentReceived;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewOrderRequest;
 use Illuminate\Http\JsonResponse;
@@ -89,6 +90,14 @@ class OrderController extends Controller
         // Handle the successful payment intent.
         Log::info('Payment Intent Succeeded:', ['paymentIntent' => $paymentIntent]);
         // Add your logic here to handle the successful payment.
+        $amountReceived = $paymentIntent['amount_received'];
+        $orderUuid = $paymentIntent['metadata']['order_uuid'];
+        $order = Order::where('uuid', $orderUuid)->first();
+        $order->amount_paid = $order->amount_paid + $amountReceived;
+        $order->save();
+
+        //fire StripePaymentReceived event
+        event(new StripePaymentReceived($order));
     }
 
     /**
