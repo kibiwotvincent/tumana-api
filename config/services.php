@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
     ],
+
+    'intasend' => [
+        'api_token' => env('INTASEND_API_TOKEN'),
+        'publishable_key' => env('INTASEND_PUBLISHABLE_KEY'),
+        'test' => false,
+    ],
 ];

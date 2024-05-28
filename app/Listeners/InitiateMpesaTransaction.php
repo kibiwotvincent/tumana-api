@@ -8,6 +8,7 @@ use App\Models\EquityTransaction;
 use App\Models\MpesaDeposit;
 use App\Events\StripePaymentCompleted;
 use Log;
+use IntaSend\IntaSendPHP\Transfer;
 
 class InitiateMpesaTransaction
 {
@@ -30,7 +31,28 @@ class InitiateMpesaTransaction
     public function handle(StripePaymentCompleted $event)
     {
         $order = $event->order;
-        $amount = $order->receiver_amount;
+        $amount = intval($order->receiver_amount);
+        $receiverPhoneNumber = $order->receiver_phone_number;
         Log::info('Initiating mpesa transfer...');
+
+        $receiverPhoneNumber = '254'.substr($receiverPhoneNumber, 1, strlen($receiverPhoneNumber) - 1);
+
+        $transactions = [
+            ['account'=>$receiverPhoneNumber, 'amount'=> $amount],
+        ];
+        Log::info($transactions);
+        $credentials = [
+            'token'=> config('services.intasend.api_token'),
+            'publishable_key'=> config('services.intasend.publishable_key'),
+            'test' => false
+        ];
+        
+        $transfer = new Transfer();
+        $transfer->init($credentials);
+        
+        $response=$transfer->mpesa("KES", $transactions);
+        $response = $transfer->approve($response);
+
+        Log::debug("Mpesa B2C".$response);
     }
 }
