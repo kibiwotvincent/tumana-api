@@ -12,6 +12,8 @@ use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\EquityTransactionController;
 use App\Http\Controllers\MpesaDepositController;
+use App\Http\Controllers\StripePaymentIntentController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::post('/users/register', [RegisteredUserController::class, 'store']);
 Route::post('/users/login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
-	Route::get('/user/transactions', [TransactionController::class, 'index']);
+	Route::get('/user/transactions', [OrderController::class, 'index']);
 	
 	//admin routes
 	//roles & permissions
@@ -52,6 +54,8 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::post('/paypal/order/create', [PaypalController::class, 'createOrder']);
 	
+	Route::post('/order/create', [OrderController::class, 'create']);
+
 });
 
 
@@ -66,3 +70,14 @@ Route::get('/equity/test', [EquityTransactionController::class, 'test']);
 Route::post('/mpesa/timed_out', [MpesaDepositController::class, 'timeoutCallback']);
 Route::post('/mpesa/process_callback', [MpesaDepositController::class, 'processCallback']);
 Route::get('/mpesa/send', [MpesaDepositController::class, 'send']);
+
+Route::get('/stripe/payment_intent/create', [StripePaymentIntentController::class, 'create']);
+Route::post('/stripe/webhook', [OrderController::class, 'handleWebhook']);
+
+Route::get('/exchange_rate', function() {
+	return response()->json(['rate' => 88.55]);
+});
+
+Route::get('/fees', function() {
+	return response()->json(['fees' => 0.55]);
+});

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bad07ac63ce8dfe74c53f1bdef9ac868",
+    "content-hash": "d55233fb7acccbbd033ddf6899f96a76",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -885,6 +885,51 @@
                 }
             ],
             "time": "2022-06-20T21:43:11+00:00"
+        },
+        {
+            "name": "intasend/intasend-php",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IntaSend/intasend-php.git",
+                "reference": "fa04d6fb2edb72479d3745977d8e1ebbb6e050a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IntaSend/intasend-php/zipball/fa04d6fb2edb72479d3745977d8e1ebbb6e050a2",
+                "reference": "fa04d6fb2edb72479d3745977d8e1ebbb6e050a2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IntaSend\\IntaSendPHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kishan",
+                    "email": "kishanmnpatel@gmail.com"
+                },
+                {
+                    "name": "Felix CHERUIYOT",
+                    "email": "felix@intasend.com"
+                }
+            ],
+            "description": "The official PHP SDK for IntaSend Payment Gateway",
+            "support": {
+                "issues": "https://github.com/IntaSend/intasend-php/issues",
+                "source": "https://github.com/IntaSend/intasend-php/tree/v1.1.0"
+            },
+            "time": "2023-09-20T08:46:21+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2756,6 +2801,65 @@
                 "source": "https://github.com/srmklive/laravel-paypal/tree/3.0.27"
             },
             "time": "2023-11-09T22:02:55+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v14.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "7038876e791ed0cd7326d2497515a8e37734b3e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7038876e791ed0cd7326d2497515a8e37734b3e8",
+                "reference": "7038876e791ed0cd7326d2497515a8e37734b3e8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.5.0",
+                "phpstan/phpstan": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v14.8.0"
+            },
+            "time": "2024-05-23T20:23:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

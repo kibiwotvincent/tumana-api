@@ -17,6 +17,10 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
+Route::get('/pay', function () {
+    return view('pay');
+});
+
 require __DIR__.'/auth.php';
 
 //Command Route

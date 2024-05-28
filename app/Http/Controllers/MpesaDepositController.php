@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use App\Events\MpesaDepositCompleted;
 use Log;
 use Carbon\Carbon;
+use IntaSend\IntaSendPHP\Transfer;
 
 class MpesaDepositController extends Controller
 {	
@@ -49,7 +50,7 @@ class MpesaDepositController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function send(Request $request)
+    public function send2(Request $request)
     {
         $amount = 51;
         $phoneNumber = '0706038461';
@@ -84,5 +85,27 @@ class MpesaDepositController extends Controller
         $data = $request->all();
         Log::info("timeout");
         Log::debug($data);
+    }
+    
+    public function send() {
+        
+        $transactions = [
+            ['account'=>'254706038461','amount'=>'20','name' => 'Vincent Kibiwott','narrative' => 'Money received from paypal'],
+        ];
+
+        $transfer = new Transfer();
+        $credentials = [
+            'token'=>'ISSecretKey_test_d359a021-e919-425f-a15a-59d03d54c5b8',
+            'publishable_key'=>'ISPubKey_test_53335275-f9fa-47b8-8e7c-ea3e47d5f217',
+            'test'=>true,
+        ];
+        
+        $transfer->init($credentials);
+
+        $response=$transfer->mpesa("KES", $transactions);
+        print_r($response);
+        //approve
+        $response = $transfer->approve($response);
+        print_r($response);
     }
 }
