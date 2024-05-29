@@ -75,9 +75,9 @@ Route::get('/stripe/payment_intent/create', [StripePaymentIntentController::clas
 Route::post('/stripe/webhook', [OrderController::class, 'handleWebhook']);
 
 Route::get('/exchange_rate', function() {
-	return response()->json(['rate' => 88.55]);
+	return response()->json(['rate' => 70.00]);
 });
 
 Route::get('/fees', function() {
-	return response()->json(['fees' => 0.55]);
+	return response()->json(['fees' => 0.00]);
 });

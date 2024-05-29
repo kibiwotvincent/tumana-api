@@ -40,7 +40,7 @@ class InitiateMpesaTransaction
         $transactions = [
             ['account'=>$receiverPhoneNumber, 'amount'=> $amount],
         ];
-        Log::info($transactions);
+        
         $credentials = [
             'token'=> config('services.intasend.api_token'),
             'publishable_key'=> config('services.intasend.publishable_key'),

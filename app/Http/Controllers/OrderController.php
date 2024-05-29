@@ -27,8 +27,8 @@ class OrderController extends Controller
         $formData = $request->safe();
         $referenceID = time();
         $transferAmount = $formData->transfer_amount;
-        $exchangeRate = 88.55;
-        $transferFee = 0.50;
+        $exchangeRate = 70.00;
+        $transferFee = 0.00;
         $totalAmount = round($transferAmount + $transferFee);
         $receiverAmount = floor($transferAmount * $exchangeRate);
 
