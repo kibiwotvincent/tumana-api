@@ -27,8 +27,8 @@ class OrderController extends Controller
         $formData = $request->safe();
         $referenceID = time();
         $transferAmount = $formData->transfer_amount;
-        $exchangeRate = 70.00;
-        $transferFee = 0.00;
+        $exchangeRate = 88.55;
+        $transferFee = 0.55;
         $totalAmount = round($transferAmount + $transferFee);
         $receiverAmount = floor($transferAmount * $exchangeRate);
 
@@ -98,6 +98,8 @@ class OrderController extends Controller
 
         //fire StripePaymentReceived event
         event(new StripePaymentReceived($order));
+        
+        return response()->json(['status' => 'success'], 200);
     }
 
     /**
