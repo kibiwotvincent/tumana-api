@@ -31,6 +31,7 @@ class InitiateMpesaTransaction
     public function handle(StripePaymentCompleted $event)
     {
         $order = $event->order;
+        if($order->credit_status == 'completed') return;
         $amount = intval($order->receiver_amount);
         $receiverPhoneNumber = $order->receiver_phone_number;
         Log::info('Initiating mpesa transfer...');

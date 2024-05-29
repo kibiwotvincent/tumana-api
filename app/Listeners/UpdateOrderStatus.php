@@ -28,6 +28,7 @@ class UpdateOrderStatus
     public function handle(StripePaymentReceived $event)
     {
         $order = $event->order;
+        if($order->status == 'completed') return;
         if($order->amount_paid >= $order->total_amount) {
             $order->status = 'completed';
             $order->save();
